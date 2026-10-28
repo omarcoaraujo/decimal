@@ -1,18 +1,18 @@
-local decimal = require "@lib"
-local tint = require "@pkg/tint"
-local spec = {} :: { [string]: any }
+const decimal = require "@lib"
+const tint = require "@pkg/tint"
+const spec = {} :: { [string]: any }
 
-local function fails(callback: () -> any, expected: string)
-	local success, message = pcall(callback)
+const function fails(callback: () -> any, expected: string)
+	const success, message = pcall(callback)
 	assert(not success, `expected an error containing "{expected}"`)
 	assert(string.find(tostring(message), expected, 1, true), `wrong error: {message}`)
 end
 
-local function converted(amount: string, rate: string): string
+const function converted(amount: string, rate: string): string
 	return decimal.format(decimal.multiply(decimal.parse(amount), decimal.parse_rate(rate)))
 end
 
-local function percent_of(amount: string, percent: string): string
+const function percent_of(amount: string, percent: string): string
 	return decimal.format(decimal.percentage(decimal.parse(amount), decimal.parse_percent(percent)))
 end
 
@@ -196,7 +196,7 @@ function spec.should_compare_amounts()
 end
 
 function spec.should_sum_list()
-	local amounts = { decimal.parse "1442.69", decimal.parse "-1250.00", decimal.parse "0.31" }
+	const amounts = { decimal.parse "1442.69", decimal.parse "-1250.00", decimal.parse "0.31" }
 	assert(decimal.format(decimal.sum(amounts)) == "193.00")
 end
 
@@ -230,7 +230,7 @@ function spec.should_round_half_away_from_zero_for_negatives()
 end
 
 function spec.should_not_return_negative_zero()
-	local result = decimal.multiply(-1, decimal.parse_rate "0.1")
+	const result = decimal.multiply(-1, decimal.parse_rate "0.1")
 	assert(result == 0 and 1 / result == math.huge)
 end
 
@@ -301,12 +301,12 @@ function spec.should_take_percentage_of_one_million()
 	assert(percent_of("1000000.00", "33.333333333333") == "333333.33")
 end
 
-local function is_test(name: string, value: any)
+const function is_test(name: string, value: any)
 	return typeof(value) == "function" and name:sub(1, 7) == "should_"
 end
 
-local function get_sorted_keys()
-	local keys = {}
+const function get_sorted_keys()
+	const keys = {}
 
 	for key, value in spec do
 		if is_test(key, value) then table.insert(keys, key) end
@@ -322,7 +322,7 @@ local failed = 0
 for _, name in get_sorted_keys() do
 	total += 1
 
-	local success, error_message = pcall(spec[name])
+	const success, error_message = pcall(spec[name])
 	if success then continue end
 
 	failed += 1
