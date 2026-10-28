@@ -1,0 +1,19 @@
+# Pesde
+/luau_packages/
+
+# Lock Files
+**/*.lock*
+
+# Build
+/build/
+
+# Environment
+.env
+
+# Claude
+CLAUDE.md
+.claude
+TODO.md
+
+# pesde dry run
+/package.tar.gz

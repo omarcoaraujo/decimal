@@ -1,0 +1,21 @@
+name: Release
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+jobs:
+  check:
+    uses: ./.github/workflows/check.yml
+    secrets: inherit
+  publish:
+    runs-on: ubuntu-latest
+    needs: [check]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: axiom-co/setup-pesde@b690699ace34169731b6b2a1c93b2008472038a7
+        with:
+          token: ${{ github.token }}
+      - run: pesde auth login --token "$PESDE_AUTH"
+        env:
+          PESDE_AUTH: ${{ secrets.PESDE_AUTH }}
+      - run: pesde publish -y
