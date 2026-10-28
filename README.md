@@ -1,6 +1,6 @@
 # decimal
 
-Exact money arithmetic for [Luau](https://luau.org). Luau has no decimal type, so amounts are integer cents and exchange rates are integers with a fixed scale. Pure functions: no runtime APIs, so it runs on Lute, Lune and Zune.
+[Luau](https://luau.org) has no decimal type, so amounts are integer cents and exchange rates are integers with a fixed scale. Pure functions: no runtime APIs, so it runs on Lute, Lune and Zune.
 
 ## Installation
 
