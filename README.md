@@ -1,5 +1,7 @@
 # decimal
 
+<a href="https://github.com/omarcoaraujo/decimal/actions/workflows/check.yml"><img src="https://github.com/omarcoaraujo/decimal/actions/workflows/check.yml/badge.svg" alt="Check"/></a> <a href="https://github.com/omarcoaraujo/decimal/actions/workflows/release.yml"><img src="https://github.com/omarcoaraujo/decimal/actions/workflows/release.yml/badge.svg" alt="Release"/></a>
+
 [Luau](https://luau.org) has no decimal type, so amounts are integer cents and exchange rates are integers with a fixed scale. Pure functions: no runtime APIs, so it runs on Lute, Lune and Zune.
 
 ## Installation
