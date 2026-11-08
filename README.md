@@ -16,23 +16,23 @@ decimal = { name = "omarcoaraujo/decimal", version = "^0.1.0" }
 Then require it:
 
 ```luau
-local decimal = require("@pkg/decimal")
+const decimal = require("@pkg/decimal")
 ```
 
 ## Usage
 
 ```luau
-local usd = decimal.parse("250.00")
-local rate = decimal.parse_rate("5.19772")
+const usd = decimal.parse("250.00")
+const rate = decimal.parse_rate("5.19772")
 
-local brl = decimal.multiply(usd, rate)
+const brl = decimal.multiply(usd, rate)
 print(decimal.format(brl))
 
-local balance = decimal.subtract(decimal.parse("1442.69"), decimal.parse("1250.00"))
+const balance = decimal.subtract(decimal.parse("1442.69"), decimal.parse("1250.00"))
 print(decimal.format(balance))
 
-local fee = decimal.percentage(brl, decimal.parse_percent("2.5"))
-local total = decimal.sum({ brl, fee, balance })
+const fee = decimal.percentage(brl, decimal.parse_percent("2.5"))
+const total = decimal.sum({ brl, fee, balance })
 ```
 
 | Function | Returns |
